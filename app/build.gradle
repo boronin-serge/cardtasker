@@ -31,10 +31,16 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation developmentDependencies.kotlinStdlibJdk7
     implementation dependencies.appcompat
-    implementation developmentDependencies.coreKtx
     implementation dependencies.constraintlayout
+
+    implementation developmentDependencies.kotlinStdlibJdk7
+    implementation developmentDependencies.coreKtx
+
+    // Dagger
+    implementation developmentDependencies.dagger
+    implementation developmentDependencies.daggerSupport
+    implementation developmentDependencies.daggerAnnotationProc
 
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.androidJunit

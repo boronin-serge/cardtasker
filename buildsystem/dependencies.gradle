@@ -19,6 +19,7 @@ ext {
     kotlin_version                  = '1.3.+'
     annotationVersion               = '1.0.0'
     coreKtxVersion                  = '1.0.2'
+    daggerVersion                   = '2.25.3'
 
     // Test
     junitVersion                    = "4.12"
@@ -34,7 +35,10 @@ ext {
     developmentDependencies = [
         kotlinStdlibJdk7:           "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
         coreKtx:                    "androidx.core:core-ktx:${coreKtxVersion}",
-        annotation:                 "androidx.annotation:annotation:${annotationVersion}"
+        annotation:                 "androidx.annotation:annotation:${annotationVersion}",
+        dagger:                     "com.google.dagger:dagger-android:${daggerVersion}",
+        daggerSupport:              "com.google.dagger:dagger-android-support:${daggerVersion}",
+        daggerAnnotationProc:       "com.google.dagger:dagger-android-processor:${daggerVersion}"
     ]
 
     testDependencies = [
