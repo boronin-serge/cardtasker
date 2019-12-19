@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    def ext = rootProject.ext
+    compileSdkVersion ext.androidCompileSdkVersion
+    buildToolsVersion ext.androidBuildToolsVersion
+    defaultConfig {
+        applicationId "ru.boronin.cardtasker"
+        minSdkVersion ext.androidMinSdkVersion
+        targetSdkVersion ext.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+    def developmentDependencies = rootProject.ext.developmentDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation developmentDependencies.kotlinStdlibJdk7
+    implementation dependencies.appcompat
+    implementation developmentDependencies.coreKtx
+    implementation dependencies.constraintlayout
+
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.androidJunit
+    androidTestImplementation testDependencies.espresso
+}
