@@ -1,7 +1,8 @@
-package ru.boronin.cardtasker
+package ru.boronin.cardtasker.features.main.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.boronin.cardtasker.R
 
 class MainActivity : AppCompatActivity() {
 
