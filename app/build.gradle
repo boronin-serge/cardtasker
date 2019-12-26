@@ -31,6 +31,10 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // Core modules
+    implementation project(':core-api')
+    implementation project(':common-utils')
+
     implementation dependencies.appcompat
     implementation dependencies.constraintlayout
 

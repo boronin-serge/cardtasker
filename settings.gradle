@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':core-api', ':common-utils', ':common-navigation'
 rootProject.name='CardTasker'
