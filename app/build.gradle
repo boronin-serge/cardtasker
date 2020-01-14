@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     def ext = rootProject.ext
     compileSdkVersion ext.androidCompileSdkVersion
@@ -34,7 +36,9 @@ dependencies {
     // Core modules
     implementation project(':core-api')
     implementation project(':common-utils')
+    implementation project(':common-navigation')
 
+    implementation dependencies.rxJava
     implementation dependencies.appcompat
     implementation dependencies.constraintlayout
 
@@ -43,8 +47,8 @@ dependencies {
 
     // Dagger
     implementation developmentDependencies.dagger
-    implementation developmentDependencies.daggerSupport
-    implementation developmentDependencies.daggerAnnotationProc
+    annotationProcessor developmentDependencies.daggerAnnotationProc
+    kapt developmentDependencies.daggerCompiler
 
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.androidJunit
