@@ -1,9 +1,9 @@
 package ru.boronin.cardtasker.features.details.ui
 
-import android.content.Context
 import ru.boronin.cardtasker.R
 import ru.boronin.cardtasker.common.presentation.BaseFragment
-import ru.boronin.cardtasker.features.details.di.DaggerDetailsComponent
+import ru.boronin.cardtasker.features.details.di.DetailsComponent
+import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
 import javax.inject.Inject
 
 /**
@@ -14,11 +14,12 @@ class DetailsFragment : BaseFragment() {
     @Inject
     lateinit var presenter: DetailsPresenter
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    private lateinit var component: DetailsComponent
 
-        DaggerDetailsComponent.factory()
-            .create(requireActivity(), R.id.container)
-            .inject(this)
+    override fun getLayout() = R.layout.details_fragment
+
+    override fun initDagger(activityComponent: ActivityComponent) {
+        component = activityComponent.detailsFactory().create()
+        component.inject(this)
     }
 }

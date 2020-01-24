@@ -1,11 +1,9 @@
 package ru.boronin.cardtasker.features.details.di
 
-import androidx.fragment.app.FragmentActivity
 import dagger.Module
 import dagger.Provides
 import ru.boronin.cardtasker.features.details.navigator.DetailsNavigator
 import ru.boronin.cardtasker.features.details.navigator.DetailsNavigatorImpl
-import ru.boronin.common.navigation.AppNavigatorHandlerImpl
 import ru.boronin.core.api.navigator.NavigatorHandler
 
 /**
@@ -16,12 +14,9 @@ import ru.boronin.core.api.navigator.NavigatorHandler
 class DetailsModule {
 
     @Provides
-    fun provideNavigator(activity: FragmentActivity, containerId: Int): DetailsNavigator {
+    fun provideNavigator(navigatorHandler: NavigatorHandler): DetailsNavigator {
         return DetailsNavigatorImpl().apply {
-            globalHandler = AppNavigatorHandlerImpl(
-                activity.supportFragmentManager,
-                containerId
-            )
+            globalHandler = navigatorHandler
         }
     }
 }

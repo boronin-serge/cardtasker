@@ -2,7 +2,10 @@ package ru.boronin.cardtasker.features.main.di.activity
 
 import androidx.fragment.app.FragmentActivity
 import dagger.BindsInstance
+import dagger.Component
 import dagger.Subcomponent
+import ru.boronin.cardtasker.features.details.di.DetailsComponent
+import ru.boronin.cardtasker.features.details.ui.DetailsFragment
 import ru.boronin.cardtasker.features.main.ui.MainActivity
 
 /**
@@ -11,6 +14,8 @@ import ru.boronin.cardtasker.features.main.ui.MainActivity
 
 @Subcomponent(modules = [ActivityModule::class])
 interface ActivityComponent {
+
+    fun detailsFactory(): DetailsComponent.Factory
 
     @Subcomponent.Factory
     interface Factory {
