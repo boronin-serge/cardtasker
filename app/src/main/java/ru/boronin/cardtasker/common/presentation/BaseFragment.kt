@@ -12,6 +12,12 @@ import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
 import ru.boronin.cardtasker.features.main.ui.MainActivity
 import ru.boronin.common.navigation.ScreenResult
 import ru.boronin.common.navigation.ScreenResultProvider
+import ru.boronin.common.plugins.loading.LoadingUIDelegatePlugin
+import ru.boronin.common.plugins.loading.LoadingUIDelegatePluginImpl
+import ru.boronin.common.plugins.toolbar.ToolbarUIDelegatePlugin
+import ru.boronin.common.plugins.toolbar.ToolbarUIDelegatePluginImpl
+import ru.boronin.core.android.view.delegate.UIDelegatePlugin
+import ru.boronin.core.android.view.delegate.UIDelegatePluginEvent
 import ru.boronin.core.api.navigator.BackListener
 
 /**
@@ -21,19 +27,36 @@ import ru.boronin.core.api.navigator.BackListener
 private const val DEFAULT_LAYOUT = R.layout.base_fragment
 
 abstract class BaseFragment(
+    private val loadingPlugin: LoadingUIDelegatePluginImpl = LoadingUIDelegatePluginImpl(
+        R.id.vgLoading
+    ),
     private val toolbarPlugin: ToolbarUIDelegatePluginImpl = ToolbarUIDelegatePluginImpl(
         R.id.toolbar
     )
-) : Fragment(), BackListener, ScreenResultProvider {
+) : Fragment(),
+    BackListener,
+    ScreenResultProvider,
+    ToolbarUIDelegatePlugin by toolbarPlugin,
+    LoadingUIDelegatePlugin by loadingPlugin {
+
+    private val plugins = mutableListOf<UIDelegatePlugin<Fragment>>()
+
+    init {
+        initUIDelegatePlugins()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
         initDagger((activity as MainActivity).activityComponent!!)
+
+        sendUIDelegatePluginEvent(UIDelegatePluginEvent.OnAttach)
     }
 
     override fun onDetach() {
         super.onDetach()
+
+        sendUIDelegatePluginEvent(UIDelegatePluginEvent.OnDetach)
 
         clearDependencies()
     }
@@ -45,6 +68,12 @@ abstract class BaseFragment(
     ): View = inflater.inflate(DEFAULT_LAYOUT, container, false).apply {
         val userView = inflater.inflate(getLayout(), this as ViewGroup, false)
         findViewById<ViewGroup>(R.id.container).addView(userView)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        sendUIDelegatePluginEvent(UIDelegatePluginEvent.Release)
     }
 
     abstract fun initDagger(activityComponent: ActivityComponent)
@@ -69,6 +98,27 @@ abstract class BaseFragment(
     // region BackListener
 
     override fun back() = false
+
+    // endregion
+
+
+    // region Private
+
+    private fun sendUIDelegatePluginEvent(event: UIDelegatePluginEvent) {
+        plugins.forEach { it.onUIDelegatePluginEvent(event) }
+    }
+
+    private fun initUIDelegatePlugins() {
+        addUIDelegatePlugin(loadingPlugin)
+        addUIDelegatePlugin(toolbarPlugin)
+    }
+
+    private fun addUIDelegatePlugin(plugin: UIDelegatePlugin<Fragment>) {
+        with(plugins) {
+            plugin.target = this@BaseFragment
+            add(plugin)
+        }
+    }
 
     // endregion
 
