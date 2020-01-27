@@ -13,7 +13,7 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var presenter: MainPresenter
 
-    lateinit var activityComponent: ActivityComponent
+    var activityComponent: ActivityComponent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,10 @@ class MainActivity : BaseActivity() {
             .activityFactory()
             .create(this, R.id.container)
 
-        activityComponent.inject(this)
+        activityComponent?.inject(this)
+    }
+
+    override fun clearDependencies() {
+        activityComponent = null
     }
 }

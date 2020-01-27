@@ -7,6 +7,6 @@ import ru.boronin.cardtasker.common.presentation.BaseNavigator
  */
 class DetailsNavigatorImpl : BaseNavigator(), DetailsNavigator {
     override fun openSmth() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //globalHandler?.open()
     }
 }

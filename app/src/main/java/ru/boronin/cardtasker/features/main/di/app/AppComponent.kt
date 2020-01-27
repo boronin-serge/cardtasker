@@ -11,7 +11,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [AppSubcomponents::class])
+@Component
 interface AppComponent {
 
     fun activityFactory(): ActivityComponent.Factory

@@ -22,7 +22,13 @@ abstract class BaseFragment : Fragment(), BackListener, ScreenResultProvider {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        initDagger((activity as MainActivity).activityComponent)
+        initDagger((activity as MainActivity).activityComponent!!)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+
+        clearDependencies()
     }
 
     override fun onCreateView(
@@ -34,6 +40,8 @@ abstract class BaseFragment : Fragment(), BackListener, ScreenResultProvider {
     }
 
     abstract fun initDagger(activityComponent: ActivityComponent)
+
+    abstract fun clearDependencies()
 
     abstract fun getLayout(): Int
 

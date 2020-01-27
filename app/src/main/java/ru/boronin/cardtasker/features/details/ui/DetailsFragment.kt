@@ -14,12 +14,16 @@ class DetailsFragment : BaseFragment() {
     @Inject
     lateinit var presenter: DetailsPresenter
 
-    private lateinit var component: DetailsComponent
+    private var component: DetailsComponent? = null
 
     override fun getLayout() = R.layout.details_fragment
 
     override fun initDagger(activityComponent: ActivityComponent) {
-        component = activityComponent.detailsFactory().create()
-        component.inject(this)
+        component = activityComponent.detailsFactory().create(this)
+        component?.inject(this)
+    }
+
+    override fun clearDependencies() {
+        component = null
     }
 }

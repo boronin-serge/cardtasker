@@ -1,5 +1,6 @@
 package ru.boronin.cardtasker.features.details.di
 
+import dagger.BindsInstance
 import dagger.Subcomponent
 import ru.boronin.cardtasker.features.details.ui.DetailsFragment
 
@@ -12,7 +13,7 @@ interface DetailsComponent {
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(): DetailsComponent
+        fun create(@BindsInstance fragment: DetailsFragment): DetailsComponent
     }
 
     fun inject(fragment: DetailsFragment)

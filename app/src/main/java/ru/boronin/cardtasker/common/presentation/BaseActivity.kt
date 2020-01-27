@@ -17,5 +17,12 @@ abstract class BaseActivity : AppCompatActivity() {
         initDagger((application as App).appComponent)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        clearDependencies()
+    }
+
     abstract fun initDagger(appComponent: AppComponent)
+    abstract fun clearDependencies()
 }
