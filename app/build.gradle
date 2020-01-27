@@ -35,9 +35,11 @@ dependencies {
 
     // Core modules
     implementation project(':core-api')
+    implementation project(':core-android')
     implementation project(':common-utils')
     implementation project(':common-plugins')
     implementation project(':common-navigation')
+    implementation project(':common-extension')
 
     implementation dependencies.rxJava
     implementation dependencies.appcompat
