@@ -36,6 +36,7 @@ dependencies {
     // Core modules
     implementation project(':core-api')
     implementation project(':common-utils')
+    implementation project(':common-plugins')
     implementation project(':common-navigation')
 
     implementation dependencies.rxJava

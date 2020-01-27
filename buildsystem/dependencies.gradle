@@ -14,6 +14,7 @@ ext {
     // UI
     appCompatVersion                = '1.1.0'
     constraintLayoutVersion         = '1.1.3'
+    chromeCustomTabsVersion         = '23.3.0'
 
     // RxJava
     rxJavaVersion                   = '2.2.8'
@@ -24,6 +25,7 @@ ext {
     annotationVersion               = '1.0.0'
     coreKtxVersion                  = '1.0.2'
     daggerVersion                   = '2.25.3'
+    materialVersion                 = '1.1.0-alpha07'
 
     // Test
     junitVersion                    = "4.12"
@@ -34,6 +36,8 @@ ext {
         // ui
         appcompat:                  "androidx.appcompat:appcompat:$appCompatVersion",
         constraintlayout:           "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+        chromeCustomTabs:           "com.android.support:customtabs:${chromeCustomTabsVersion}",
+        material:                   "com.google.android.material:material:${materialVersion}",
 
         // rx
         rxJava:                     "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",

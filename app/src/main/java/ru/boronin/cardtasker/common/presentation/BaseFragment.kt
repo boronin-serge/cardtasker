@@ -17,7 +17,14 @@ import ru.boronin.core.api.navigator.BackListener
 /**
  * Created by Sergey Boronin on 25.12.2019.
  */
-abstract class BaseFragment : Fragment(), BackListener, ScreenResultProvider {
+
+private const val DEFAULT_LAYOUT = R.layout.base_fragment
+
+abstract class BaseFragment(
+    private val toolbarPlugin: ToolbarUIDelegatePluginImpl = ToolbarUIDelegatePluginImpl(
+        R.id.toolbar
+    )
+) : Fragment(), BackListener, ScreenResultProvider {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -35,8 +42,9 @@ abstract class BaseFragment : Fragment(), BackListener, ScreenResultProvider {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(getLayout(), container, false)
+    ): View = inflater.inflate(DEFAULT_LAYOUT, container, false).apply {
+        val userView = inflater.inflate(getLayout(), this as ViewGroup, false)
+        findViewById<ViewGroup>(R.id.container).addView(userView)
     }
 
     abstract fun initDagger(activityComponent: ActivityComponent)
