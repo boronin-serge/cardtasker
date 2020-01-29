@@ -70,6 +70,12 @@ abstract class BaseFragment(
         findViewById<ViewGroup>(R.id.container).addView(userView)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        sendUIDelegatePluginEvent(UIDelegatePluginEvent.OnViewBound(view))
+    }
+
     override fun onDestroy() {
         super.onDestroy()
 
