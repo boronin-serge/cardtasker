@@ -1,11 +1,11 @@
 package ru.boronin.cardtasker.features.details.navigator
 
-import ru.boronin.cardtasker.common.presentation.BaseNavigator
+import ru.boronin.common.navigation.AppNavigator
 
 /**
  * Created by Sergey Boronin on 14.01.2020.
  */
-class DetailsNavigatorImpl : BaseNavigator(), DetailsNavigator {
+class DetailsNavigatorImpl : AppNavigator(), DetailsNavigator {
     override fun openSmth() {
         //globalHandler?.open()
     }

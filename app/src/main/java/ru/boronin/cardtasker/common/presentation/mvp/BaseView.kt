@@ -7,7 +7,9 @@ import ru.boronin.cardtasker.common.presentation.BaseFragment
 /**
  * Created by Sergey Boronin on 29.01.2020.
  */
-abstract class BaseView<V : MvpView, P : MvpPresenter<V>> : MvpDelegateCallback<V, P>, BaseFragment(), MvpView {
+abstract class BaseView<V : MvpView, P : MvpPresenter<V>> : MvpDelegateCallback<V, P>,
+    BaseFragment(),
+    MvpView {
 
     override val view: V
         get() = this as V
