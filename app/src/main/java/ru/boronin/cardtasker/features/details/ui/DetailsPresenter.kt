@@ -12,4 +12,7 @@ class DetailsPresenter @Inject constructor(
     private val navigator: DetailsNavigator
 ) : BasePresenter<DetailsView>(), DetailsAction {
 
+    override fun backAction() {
+        navigator.back()
+    }
 }

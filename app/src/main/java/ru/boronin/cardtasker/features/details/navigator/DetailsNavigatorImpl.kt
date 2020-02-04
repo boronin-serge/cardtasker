@@ -9,4 +9,8 @@ class DetailsNavigatorImpl : AppNavigator(), DetailsNavigator {
     override fun openSmth() {
         //globalHandler?.open()
     }
+
+    override fun back() {
+        globalHandler?.back()
+    }
 }

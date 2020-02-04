@@ -9,4 +9,6 @@ interface DetailsView : MvpView {
     fun openSmth()
 }
 
-interface DetailsAction
+interface DetailsAction {
+    fun backAction()
+}

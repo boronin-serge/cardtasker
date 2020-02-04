@@ -5,4 +5,5 @@ package ru.boronin.cardtasker.features.details.navigator
  */
 interface DetailsNavigator {
     fun openSmth()
+    fun back()
 }

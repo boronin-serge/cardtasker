@@ -1,5 +1,6 @@
 package ru.boronin.cardtasker.features.home.navigator
 
+import ru.boronin.cardtasker.common.presentation.DETAILS_REQUEST_KEY
 import ru.boronin.cardtasker.features.details.ui.DetailsFragment
 import ru.boronin.common.navigation.AppNavigator
 
@@ -8,6 +9,6 @@ import ru.boronin.common.navigation.AppNavigator
  */
 class HomeNavigatorImpl : AppNavigator(), HomeNavigator {
     override fun openDetails() {
-        globalHandler?.open(DetailsFragment())
+        globalHandler?.openForResult(DetailsFragment(), DETAILS_REQUEST_KEY)
     }
 }

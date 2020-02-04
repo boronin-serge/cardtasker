@@ -25,6 +25,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        attachNavigator(navigator as AppNavigatorHandlerImpl)
 
         presenter.init()
     }
@@ -39,13 +40,5 @@ class MainActivity : BaseActivity() {
 
     override fun clearDependencies() {
         activityComponent = null
-    }
-
-    override fun onBackPressed() {
-        val backListener = (navigator as AppNavigatorHandlerImpl).getLastFragment() as? BackListener
-        val handleBack = backListener?.back() ?: DEFAULT_BOOLEAN
-        if (handleBack) {
-            super.onBackPressed()
-        }
     }
 }
