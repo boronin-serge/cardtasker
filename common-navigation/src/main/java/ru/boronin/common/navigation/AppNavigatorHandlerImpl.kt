@@ -28,6 +28,7 @@ class AppNavigatorHandlerImpl(
         val new = obj as? Fragment
         if (new is ScreenResultProvider) {
             val old = getLastFragment()
+            new.result = ScreenResult(requestCode) // We've just set requestCode. Data will be set later
             new.setTargetFragment(old, requestCode)
             pushFragment(new, tag)
         }
@@ -44,7 +45,7 @@ class AppNavigatorHandlerImpl(
             val screenResult = (current as? ScreenResultProvider)?.result
 
             screenResult?.apply {
-                if (requestCode != null && data != null) {
+                if (requestCode != null) {
                     targetController?.onActivityResult(requestCode, Activity.RESULT_OK, data)
                 }
             }

@@ -92,10 +92,10 @@ abstract class BaseFragment(
 
     override var result: ScreenResult? = null
 
-    override var resultHandler: Fragment? = null
-
     override fun setResult(resultCode: Int, data: Intent?) {
-        // TODO: make
+        result?.apply {
+            requestCode?.let { targetFragment?.onActivityResult(it, resultCode, data) }
+        }
     }
 
     // endregion ScreenResultProvider
