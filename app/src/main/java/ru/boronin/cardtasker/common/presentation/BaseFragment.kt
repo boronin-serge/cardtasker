@@ -103,7 +103,7 @@ abstract class BaseFragment(
 
     // region BackListener
 
-    override fun back() = false
+    override fun back() = true
 
     // endregion
 

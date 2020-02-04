@@ -6,7 +6,5 @@ import androidx.fragment.app.Fragment
 interface ScreenResultProvider {
   var result: ScreenResult?
 
-  var resultHandler: Fragment?
-
   fun setResult(resultCode: Int, data: Intent? = null)
 }

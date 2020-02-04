@@ -5,6 +5,10 @@ import ru.boronin.cardtasker.R
 import ru.boronin.cardtasker.common.presentation.BaseActivity
 import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
 import ru.boronin.cardtasker.features.main.di.app.AppComponent
+import ru.boronin.common.navigation.AppNavigatorHandlerImpl
+import ru.boronin.common.utils.DEFAULT_BOOLEAN
+import ru.boronin.core.api.navigator.BackListener
+import ru.boronin.core.api.navigator.NavigatorHandler
 import javax.inject.Inject
 
 
@@ -12,6 +16,9 @@ class MainActivity : BaseActivity() {
 
     @Inject
     lateinit var presenter: MainPresenter
+
+    @Inject
+    lateinit var navigator: NavigatorHandler
 
     var activityComponent: ActivityComponent? = null
 
@@ -32,5 +39,13 @@ class MainActivity : BaseActivity() {
 
     override fun clearDependencies() {
         activityComponent = null
+    }
+
+    override fun onBackPressed() {
+        val backListener = (navigator as AppNavigatorHandlerImpl).getLastFragment() as? BackListener
+        val handleBack = backListener?.back() ?: DEFAULT_BOOLEAN
+        if (handleBack) {
+            super.onBackPressed()
+        }
     }
 }

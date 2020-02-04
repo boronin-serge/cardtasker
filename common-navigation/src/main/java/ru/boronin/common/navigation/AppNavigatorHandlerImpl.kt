@@ -1,5 +1,6 @@
 package ru.boronin.common.navigation
 
+import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import ru.boronin.core.api.navigator.NavigatorHandler
@@ -24,13 +25,11 @@ class AppNavigatorHandlerImpl(
     }
 
     override fun openForResult(obj: Any?, requestCode: Int, tag: String) {
-        if (obj is ScreenResultProvider) {
-            getLastFragment()?.apply {
-                obj.result = ScreenResult(requestCode)
-                obj.resultHandler = this
-            }
-
-            pushFragment(obj as Fragment, tag)
+        val new = obj as? Fragment
+        if (new is ScreenResultProvider) {
+            val old = getLastFragment()
+            new.setTargetFragment(old, requestCode)
+            pushFragment(new, tag)
         }
     }
 
@@ -39,15 +38,29 @@ class AppNavigatorHandlerImpl(
     }
 
     override fun backWithDeliveryResult() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (getStackSize() > 0) {
+            val current = getLastFragment()
+            val targetController = current?.targetFragment
+            val screenResult = (current as? ScreenResultProvider)?.result
+
+            screenResult?.apply {
+                if (requestCode != null && data != null) {
+                    targetController?.onActivityResult(requestCode, Activity.RESULT_OK, data)
+                }
+            }
+        }
     }
 
     override fun backToTag(tag: String, deliveryResult: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun backToRoot(deliveryResult: Boolean) {
-
+        if (getStackSize() > 0) {
+            for (i in 1..getStackSize()) {
+                fragmentManager.popBackStack()
+            }
+        }
     }
 
     override fun pop(obj: Any?) {
@@ -75,27 +88,38 @@ class AppNavigatorHandlerImpl(
         return fragmentManager.backStackEntryCount
     }
 
+    fun getLastFragment(): Fragment? {
+        val index = max(getStackSize() - 1, 0)
+        val tag =  fragmentManager.getBackStackEntryAt(index).name
+        return fragmentManager.findFragmentByTag(tag)
+    }
 
     // region private
 
     private fun pushFragment(fragment: Fragment, tag: String = "") {
+        val notEmptyTag = if (tag.isEmpty()) {
+            fragment.javaClass.simpleName
+        } else {
+            tag
+        }
+
         fragmentManager.beginTransaction()
-            .add(containerId, fragment, tag)
-            .addToBackStack(null)
+            .add(containerId, fragment, notEmptyTag)
+            .addToBackStack(notEmptyTag)
             .commit()
     }
 
     private fun replaceFragment(fragment: Fragment, tag: String = "") {
-        fragmentManager.beginTransaction()
-            .replace(containerId, fragment, tag)
-            .addToBackStack(null)
-            .commit()
-    }
+        val notEmptyTag = if (tag.isEmpty()) {
+            fragment.javaClass.simpleName
+        } else {
+            tag
+        }
 
-    private fun getLastFragment(): Fragment? {
-        val index = max(getStackSize() - 1, 0)
-        val tag =  fragmentManager.getBackStackEntryAt(index).name
-        return fragmentManager.findFragmentByTag(tag)
+        fragmentManager.beginTransaction()
+            .replace(containerId, fragment, notEmptyTag)
+            .addToBackStack(notEmptyTag)
+            .commit()
     }
 
     // endregion

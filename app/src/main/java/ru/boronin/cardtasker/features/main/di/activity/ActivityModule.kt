@@ -10,6 +10,7 @@ import ru.boronin.cardtasker.features.main.navigator.MainNavigator
 import ru.boronin.cardtasker.features.main.navigator.MainNavigatorImpl
 import ru.boronin.common.navigation.AppNavigatorHandlerImpl
 import ru.boronin.core.api.navigator.NavigatorHandler
+import javax.inject.Singleton
 
 /**
  * Created by Sergey Boronin on 14.01.2020.

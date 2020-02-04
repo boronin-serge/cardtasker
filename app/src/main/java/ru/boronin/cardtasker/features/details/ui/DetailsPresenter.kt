@@ -12,8 +12,4 @@ class DetailsPresenter @Inject constructor(
     private val navigator: DetailsNavigator
 ) : BasePresenter<DetailsView>(), DetailsAction {
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-
-    }
 }

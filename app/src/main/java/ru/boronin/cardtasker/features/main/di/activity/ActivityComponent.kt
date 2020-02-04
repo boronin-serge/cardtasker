@@ -6,6 +6,7 @@ import dagger.Component
 import dagger.Subcomponent
 import ru.boronin.cardtasker.features.details.di.DetailsComponent
 import ru.boronin.cardtasker.features.details.ui.DetailsFragment
+import ru.boronin.cardtasker.features.home.di.HomeComponent
 import ru.boronin.cardtasker.features.main.ui.MainActivity
 
 /**
@@ -16,6 +17,7 @@ import ru.boronin.cardtasker.features.main.ui.MainActivity
 interface ActivityComponent {
 
     fun detailsFactory(): DetailsComponent.Factory
+    fun homeFactory(): HomeComponent.Factory
 
     @Subcomponent.Factory
     interface Factory {
