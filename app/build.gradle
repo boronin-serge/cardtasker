@@ -43,7 +43,9 @@ dependencies {
 
     implementation dependencies.rxJava
     implementation dependencies.appcompat
+    implementation dependencies.material
     implementation dependencies.constraintlayout
+
 
     implementation developmentDependencies.kotlinStdlibJdk7
     implementation developmentDependencies.coreKtx

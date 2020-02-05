@@ -58,8 +58,7 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
     // region private
 
     private fun initToolbar() {
-        setVisibleToolbar(true)
-        setVisibleToolbarBackButton(false)
+        setVisibleToolbar(false)
     }
 
     // endregion

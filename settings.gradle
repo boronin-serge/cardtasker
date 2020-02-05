@@ -1,3 +1,2 @@
 include ':app', ':core-api', ':common-utils', ':common-navigation', ':common-extension', ':core-android', ':common-plugins'
 rootProject.name='CardTasker'
-project(':common-plugins').projectDir = new File('common-plugins2')
