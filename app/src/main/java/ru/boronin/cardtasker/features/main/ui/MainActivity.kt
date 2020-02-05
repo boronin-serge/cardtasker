@@ -30,7 +30,6 @@ class MainActivity : BaseActivity() {
         attachNavigator(navigator as AppNavigatorHandlerImpl)
 
         presenter.init()
-        initListeners()
     }
 
     override fun initDagger(appComponent: AppComponent) {
@@ -44,26 +43,4 @@ class MainActivity : BaseActivity() {
     override fun clearDependencies() {
         activityComponent = null
     }
-
-
-    // region private
-
-    private fun initListeners() {
-        bottomNavigation?.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.menuItem1 -> {
-                    true
-                }
-                R.id.menuItem2 -> {
-                    true
-                }
-                R.id.menuItem3 -> {
-                    true
-                }
-                else -> false
-            }
-        }
-    }
-
-    // endregion
 }
