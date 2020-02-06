@@ -24,4 +24,5 @@
         android:title="@string/bottomBar_item4"
         android:state_checked="false"
         android:icon="@drawable/ic_settings_black_24dp" />
+
 </menu>

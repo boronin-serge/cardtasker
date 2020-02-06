@@ -86,6 +86,10 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
                     root?.setBackgroundColor(Color.YELLOW)
                     true
                 }
+                R.id.menuItem4 -> {
+                    root?.setBackgroundColor(Color.RED)
+                    true
+                }
                 else -> false
             }
         }
