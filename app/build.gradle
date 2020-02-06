@@ -52,7 +52,6 @@ dependencies {
 
     // Dagger
     implementation developmentDependencies.dagger
-    annotationProcessor developmentDependencies.daggerAnnotationProc
     kapt developmentDependencies.daggerCompiler
 
     testImplementation testDependencies.junit

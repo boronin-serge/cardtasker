@@ -38,6 +38,7 @@ ext {
         constraintlayout:           "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
         chromeCustomTabs:           "com.android.support:customtabs:${chromeCustomTabsVersion}",
         material:                   "com.google.android.material:material:${materialVersion}",
+        //viewpager2: "androidx.viewpager2:viewpager2:1.0.0-beta02"
 
         // rx
         rxJava:                     "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
@@ -49,10 +50,8 @@ ext {
         annotation:                 "androidx.annotation:annotation:${annotationVersion}",
 
         // dagger
-        dagger:                     "com.google.dagger:dagger-android:${daggerVersion}",
-        daggerSupport:              "com.google.dagger:dagger-android-support:${daggerVersion}",
-        daggerCompiler:              "com.google.dagger:dagger-compiler:${daggerVersion}",
-        daggerAnnotationProc:       "com.google.dagger:dagger-android-processor:${daggerVersion}"
+        dagger:                     "com.google.dagger:dagger:${daggerVersion}",
+        daggerCompiler:             "com.google.dagger:dagger-compiler:${daggerVersion}"
     ]
 
     testDependencies = [
