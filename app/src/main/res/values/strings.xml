@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CardTasker</string>
-    <string name="bottomBar_item1">Item1</string>
-    <string name="bottomBar_item2">Item2</string>
-    <string name="bottomBar_item3">Item3</string>
+    <string name="bottomBar_item1">Tasks</string>
+    <string name="bottomBar_item2">Alarms</string>
+    <string name="bottomBar_item3">Events</string>
+    <string name="bottomBar_item4">Settings</string>
 </resources>
