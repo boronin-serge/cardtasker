@@ -10,20 +10,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:labelVisibilityMode="selected"
-        app:elevation="0dp"
-        app:itemRippleColor="@android:color/white"
-        app:itemIconTint="@color/bottom_navigation_colors"
-        app:itemTextColor="@color/bottom_navigation_colors"
-        app:menu="@menu/bottom_bar_menu"
-        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

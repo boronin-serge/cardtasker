@@ -71,8 +71,7 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
     }
 
     private fun initBottomBar() {
-        val bottomView = (requireActivity() as MainActivity).bottomNavigation
-        bottomView?.setOnNavigationItemSelectedListener { item ->
+        bottomNavigation?.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.menuItem1 -> {
                     root?.setBackgroundColor(Color.WHITE)

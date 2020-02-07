@@ -57,6 +57,7 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter>(), DetailsView,
     private fun initToolbar() {
         setVisibleToolbar(true)
         setVisibleToolbarBackButton(true)
+        setVisibleToolbarShadow(false)
         setToolbarBackButtonCallback { presenter.backAction() }
     }
 
