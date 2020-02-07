@@ -28,11 +28,6 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
     override fun getLayout() = R.layout.home_fragment
 
     override fun onViewBound(view: View) {
-
-        button?.setOnClickListener {
-            presenter.openDetails()
-        }
-
         initToolbar()
         initBottomBar()
         initListeners()
@@ -49,13 +44,6 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
 
     override fun openSmth() {
 
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK) {
-            val info = data?.getStringExtra(DATA_KEY)
-            text?.text = info ?: DEFAULT_STRING
-        }
     }
 
     override fun back() = false
