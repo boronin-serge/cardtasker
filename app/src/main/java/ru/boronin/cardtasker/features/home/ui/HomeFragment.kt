@@ -54,7 +54,7 @@ class HomeFragment : BaseView<HomeView, HomePresenter, HomeComponent>(), HomeVie
 
     private fun initBottomBar() {
         bottomNavigation?.setOnNavigationItemSelectedListener { item ->
-            viewPager2.fadeOutIn { switchTab(item.itemId) }
+            switchTab(item.itemId)
             true
         }
     }
@@ -62,7 +62,7 @@ class HomeFragment : BaseView<HomeView, HomePresenter, HomeComponent>(), HomeVie
     private fun switchTab(menuId: Int) {
         val index = bottomItems.indexOf(menuId)
         if (index != viewPager2.currentItem) {
-            viewPager2.setCurrentItem(index, false)
+            viewPager2.fadeOutIn { viewPager2.setCurrentItem(index, false) }
         }
     }
 
