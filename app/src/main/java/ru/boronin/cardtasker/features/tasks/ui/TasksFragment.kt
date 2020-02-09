@@ -1,11 +1,10 @@
 package ru.boronin.cardtasker.features.tasks.ui
 
 import android.view.View
-import kotlinx.android.synthetic.main.tasks_fragment.*
-import ru.boronin.cardtasker.common.presentation.mvp.BaseView
-import ru.boronin.cardtasker.features.tasks.di.TasksComponent
 import ru.boronin.cardtasker.R
+import ru.boronin.cardtasker.common.presentation.mvp.BaseView
 import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
+import ru.boronin.cardtasker.features.tasks.di.TasksComponent
 import javax.inject.Inject
 
 class TasksFragment : BaseView<TasksView, TasksPresenter>(), TasksView {
@@ -23,8 +22,8 @@ class TasksFragment : BaseView<TasksView, TasksPresenter>(), TasksView {
     }
 
     override fun initDagger(activityComponent: ActivityComponent) {
-        //component = activityComponent.tasksFactory().create(this)
-        //component?.inject(this)
+        component = activityComponent.tasksFactory().create(this)
+        component?.inject(this)
     }
     
     override fun clearDependencies() {

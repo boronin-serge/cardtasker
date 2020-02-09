@@ -8,6 +8,7 @@ import ru.boronin.cardtasker.features.details.di.DetailsComponent
 import ru.boronin.cardtasker.features.details.ui.DetailsFragment
 import ru.boronin.cardtasker.features.home.di.HomeComponent
 import ru.boronin.cardtasker.features.main.ui.MainActivity
+import ru.boronin.cardtasker.features.tasks.di.TasksComponent
 
 /**
  * Created by Sergey Boronin on 14.01.2020.
@@ -16,9 +17,6 @@ import ru.boronin.cardtasker.features.main.ui.MainActivity
 @Subcomponent(modules = [ActivityModule::class])
 interface ActivityComponent {
 
-    fun detailsFactory(): DetailsComponent.Factory
-    fun homeFactory(): HomeComponent.Factory
-
     @Subcomponent.Factory
     interface Factory {
         fun create(
@@ -26,6 +24,10 @@ interface ActivityComponent {
             @BindsInstance containerId: Int
         ): ActivityComponent
     }
+
+    fun detailsFactory(): DetailsComponent.Factory
+    fun homeFactory(): HomeComponent.Factory
+    fun tasksFactory(): TasksComponent.Factory
 
     fun inject(activity: MainActivity)
 }

@@ -1,18 +1,15 @@
 package ru.boronin.cardtasker.features.home.ui
 
-import android.app.Activity
-import android.content.Intent
-import android.graphics.Color
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import ru.boronin.cardtasker.R
-import ru.boronin.cardtasker.common.presentation.DATA_KEY
+import ru.boronin.cardtasker.common.presentation.ViewPagerAdapter
 import ru.boronin.cardtasker.common.presentation.mvp.BaseView
+import ru.boronin.cardtasker.features.details.ui.DetailsFragment
 import ru.boronin.cardtasker.features.home.di.HomeComponent
 import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
-import ru.boronin.cardtasker.features.main.ui.MainActivity
-import ru.boronin.common.utils.DEFAULT_STRING
+import ru.boronin.cardtasker.features.tasks.ui.TasksFragment
+import ru.boronin.common.extension.widget.fadeOutIn
 import javax.inject.Inject
 
 /**
@@ -24,11 +21,13 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
     override lateinit var presenter: HomePresenter
 
     private var component: HomeComponent? = null
+    private val bottomItems = listOf(R.id.menuItem1, R.id.menuItem2, R.id.menuItem3, R.id.menuItem4)
 
     override fun getLayout() = R.layout.home_fragment
 
     override fun onViewBound(view: View) {
         initToolbar()
+        initViewPager()
         initBottomBar()
         initListeners()
     }
@@ -60,26 +59,18 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
 
     private fun initBottomBar() {
         bottomNavigation?.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.menuItem1 -> {
-                    root?.setBackgroundColor(Color.WHITE)
-                    true
-                }
-                R.id.menuItem2 -> {
-                    root?.setBackgroundColor(Color.RED)
-                    true
-                }
-                R.id.menuItem3 -> {
-                    root?.setBackgroundColor(Color.YELLOW)
-                    true
-                }
-                R.id.menuItem4 -> {
-                    root?.setBackgroundColor(Color.RED)
-                    true
-                }
-                else -> false
+            viewPager2.fadeOutIn {
+                val index = bottomItems.indexOf(item.itemId)
+                viewPager2.setCurrentItem(index, false)
             }
+            true
         }
+    }
+
+    private fun initViewPager() {
+        val adapter = ViewPagerAdapter(requireActivity())
+        viewPager2?.adapter = adapter
+        adapter.update(listOf(TasksFragment(), DetailsFragment(), TasksFragment(), DetailsFragment()))
     }
 
     // endregion

@@ -20,7 +20,7 @@
         android:layout_gravity="bottom"
         app:labelVisibilityMode="selected"
         app:elevation="0dp"
-        app:itemRippleColor="@android:color/white"
+        app:itemRippleColor="@color/colorPrimary"
         app:itemIconTint="@color/bottom_navigation_colors"
         app:itemTextColor="@color/bottom_navigation_colors"
         app:menu="@menu/bottom_bar_menu"
