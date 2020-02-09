@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import ru.boronin.cardtasker.R
 import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
 import ru.boronin.cardtasker.features.main.ui.MainActivity
+import ru.boronin.common.navigation.AppNavigatorHandlerImpl
 import ru.boronin.common.navigation.ScreenResult
 import ru.boronin.common.navigation.ScreenResultProvider
 import ru.boronin.common.plugins.loading.LoadingUIDelegatePlugin
@@ -87,6 +88,11 @@ abstract class BaseFragment(
     abstract fun clearDependencies()
 
     abstract fun getLayout(): Int
+
+    fun getLocalNavigator() = AppNavigatorHandlerImpl(
+        activity?.supportFragmentManager!!,
+        getLayout()
+    )
 
     // region ScreenResultProvider
 

@@ -7,12 +7,10 @@ import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
 import ru.boronin.cardtasker.features.tasks.di.TasksComponent
 import javax.inject.Inject
 
-class TasksFragment : BaseView<TasksView, TasksPresenter>(), TasksView {
+class TasksFragment : BaseView<TasksView, TasksPresenter, TasksComponent>(), TasksView {
     
     @Inject 
     override lateinit var presenter: TasksPresenter
-
-    private var component: TasksComponent? = null
     
     override fun getLayout() = R.layout.tasks_fragment
             
@@ -24,10 +22,6 @@ class TasksFragment : BaseView<TasksView, TasksPresenter>(), TasksView {
     override fun initDagger(activityComponent: ActivityComponent) {
         component = activityComponent.tasksFactory().create(this)
         component?.inject(this)
-    }
-    
-    override fun clearDependencies() {
-        component = null
     }
 
     // region private

@@ -18,10 +18,7 @@ class TasksModule {
     ): TasksNavigator {
         return TasksNavigatorImpl().apply {
             globalHandler = navigatorHandler
-            localHandler = AppNavigatorHandlerImpl(
-                fragment.activity?.supportFragmentManager!!,
-                fragment.getLayout()
-            )
+            localHandler = fragment.getLocalNavigator()
         }
     }
 }

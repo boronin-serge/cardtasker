@@ -22,10 +22,7 @@ class DetailsModule {
     ): DetailsNavigator {
         return DetailsNavigatorImpl().apply {
             globalHandler = navigatorHandler
-            localHandler = AppNavigatorHandlerImpl(
-                fragment.activity?.supportFragmentManager!!,
-                fragment.getLayout()
-            )
+            localHandler = fragment.getLocalNavigator()
         }
     }
 }

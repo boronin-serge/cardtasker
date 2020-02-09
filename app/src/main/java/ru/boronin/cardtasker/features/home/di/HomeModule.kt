@@ -22,10 +22,7 @@ class HomeModule {
     ): HomeNavigator {
         return HomeNavigatorImpl().apply {
             globalHandler = navigatorHandler
-            localHandler = AppNavigatorHandlerImpl(
-                fragment.activity?.supportFragmentManager!!,
-                fragment.getLayout()
-            )
+            localHandler = fragment.getLocalNavigator()
         }
     }
 }

@@ -15,13 +15,11 @@ import javax.inject.Inject
 /**
  * Created by Sergey Boronin on 14.01.2020.
  */
-class DetailsFragment : BaseView<DetailsView, DetailsPresenter>(), DetailsView,
+class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent>(), DetailsView,
     View.OnClickListener {
 
     @Inject
     override lateinit var presenter: DetailsPresenter
-
-    private var component: DetailsComponent? = null
 
     override fun getLayout() = R.layout.details_fragment
 
@@ -35,9 +33,7 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter>(), DetailsView,
         component?.inject(this)
     }
 
-    override fun clearDependencies() {
-        component = null
-    }
+    override fun back() = false
 
     override fun openSmth() {
 

@@ -15,12 +15,11 @@ import javax.inject.Inject
 /**
  * Created by Sergey Boronin on 14.01.2020.
  */
-class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
+class HomeFragment : BaseView<HomeView, HomePresenter, HomeComponent>(), HomeView {
 
     @Inject
     override lateinit var presenter: HomePresenter
 
-    private var component: HomeComponent? = null
     private val bottomItems = listOf(R.id.menuItem1, R.id.menuItem2, R.id.menuItem3, R.id.menuItem4)
 
     override fun getLayout() = R.layout.home_fragment
@@ -35,10 +34,6 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
     override fun initDagger(activityComponent: ActivityComponent) {
         component = activityComponent.homeFactory().create(this)
         component?.inject(this)
-    }
-
-    override fun clearDependencies() {
-        component = null
     }
 
     override fun openSmth() {
@@ -59,18 +54,29 @@ class HomeFragment : BaseView<HomeView, HomePresenter>(), HomeView {
 
     private fun initBottomBar() {
         bottomNavigation?.setOnNavigationItemSelectedListener { item ->
-            viewPager2.fadeOutIn {
-                val index = bottomItems.indexOf(item.itemId)
-                viewPager2.setCurrentItem(index, false)
-            }
+            viewPager2.fadeOutIn { switchTab(item.itemId) }
             true
+        }
+    }
+
+    private fun switchTab(menuId: Int) {
+        val index = bottomItems.indexOf(menuId)
+        if (index != viewPager2.currentItem) {
+            viewPager2.setCurrentItem(index, false)
         }
     }
 
     private fun initViewPager() {
         val adapter = ViewPagerAdapter(requireActivity())
         viewPager2?.adapter = adapter
-        adapter.update(listOf(TasksFragment(), DetailsFragment(), TasksFragment(), DetailsFragment()))
+        adapter.update(
+            listOf(
+                TasksFragment(),
+                DetailsFragment(),
+                TasksFragment(),
+                DetailsFragment()
+            )
+        )
     }
 
     // endregion
