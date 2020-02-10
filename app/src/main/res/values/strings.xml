@@ -1,7 +1,29 @@
 <resources>
     <string name="app_name">CardTasker</string>
+
+    <!-- region BottomNavigationView -->
+
     <string name="bottomBar_item1">Tasks</string>
     <string name="bottomBar_item2">Alarms</string>
     <string name="bottomBar_item3">Events</string>
     <string name="bottomBar_item4">Settings</string>
+
+    <!-- endregion -->
+
+
+    <!-- region Onboarding -->
+
+    <string name="onboarding_firstPage">Create and edit to do lists for your mobile device</string>
+    <string name="onboarding_secondPage">It wll be great!</string>
+    <string name="onboarding_nextButton">Next</string>
+
+    <!-- endregion -->
+
+
+    <!-- region Other -->
+
+
+    <!-- endregion -->
+
+
 </resources>

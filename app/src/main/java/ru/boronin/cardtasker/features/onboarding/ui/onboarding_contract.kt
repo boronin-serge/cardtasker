@@ -7,5 +7,5 @@ interface OnboardingView : MvpView {
 }
 
 interface OnboardingAction {
-    
+    fun openHomeAction()
 }

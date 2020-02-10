@@ -5,4 +5,5 @@ package ru.boronin.cardtasker.features.main.navigator
  */
 interface MainNavigator {
     fun openHome()
+    fun openOnboarding()
 }

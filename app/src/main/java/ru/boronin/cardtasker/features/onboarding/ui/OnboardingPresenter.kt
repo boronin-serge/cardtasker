@@ -7,5 +7,8 @@ import javax.inject.Inject
 class OnboardingPresenter @Inject constructor(
     private val navigator: OnboardingNavigator
 ) : BasePresenter<OnboardingView>(), OnboardingAction {
-    
+
+    override fun openHomeAction() {
+        navigator.openHome()
+    }
 }

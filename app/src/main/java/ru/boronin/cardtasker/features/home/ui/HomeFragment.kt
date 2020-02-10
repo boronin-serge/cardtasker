@@ -3,7 +3,7 @@ package ru.boronin.cardtasker.features.home.ui
 import android.view.View
 import kotlinx.android.synthetic.main.home_fragment.*
 import ru.boronin.cardtasker.R
-import ru.boronin.cardtasker.common.presentation.ViewPagerAdapter
+import ru.boronin.cardtasker.common.presentation.ViewPagerFragmentAdapter
 import ru.boronin.cardtasker.common.presentation.mvp.BaseView
 import ru.boronin.cardtasker.features.details.ui.DetailsFragment
 import ru.boronin.cardtasker.features.home.di.HomeComponent
@@ -67,7 +67,7 @@ class HomeFragment : BaseView<HomeView, HomePresenter, HomeComponent>(), HomeVie
     }
 
     private fun initViewPager() {
-        val adapter = ViewPagerAdapter(requireActivity())
+        val adapter = ViewPagerFragmentAdapter(requireActivity())
         viewPager2?.adapter = adapter
         adapter.update(
             listOf(
