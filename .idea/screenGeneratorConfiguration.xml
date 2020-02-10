@@ -8,7 +8,7 @@
             <ScreenElement>
               <option name="fileNameTemplate" value="%screenName%Component" />
               <option name="name" value="DaggerComponent" />
-              <option name="template" value="package %packageName%.di&#10;&#10;import dagger.BindsInstance&#10;import dagger.Subcomponent&#10;&#10;@Subcomponent&#10;interface %screenName%Component&#10;        &#10;        &#10;        " />
+              <option name="template" value="package %packageName%.di&#10;&#10;import dagger.BindsInstance&#10;import dagger.Subcomponent&#10;import %packageName%.ui.OnboardingFragment&#10;&#10;@Subcomponent(modules = [%screenName%Module::class])&#10;interface %screenName%Component {&#10;    &#10;    @Subcomponent.Factory&#10;    interface Factory {&#10;        fun create(@BindsInstance fragment: %screenName%Fragment): %screenName%Component&#10;    }&#10;&#10;    fun inject(fragment: %screenName%Fragment)&#10;}   &#10;        &#10;        " />
             </ScreenElement>
             <ScreenElement>
               <option name="fileNameTemplate" value="%screenName%Module" />
