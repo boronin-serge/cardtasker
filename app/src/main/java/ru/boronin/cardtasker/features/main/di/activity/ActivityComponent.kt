@@ -8,6 +8,7 @@ import ru.boronin.cardtasker.features.details.di.DetailsComponent
 import ru.boronin.cardtasker.features.details.ui.DetailsFragment
 import ru.boronin.cardtasker.features.home.di.HomeComponent
 import ru.boronin.cardtasker.features.main.ui.MainActivity
+import ru.boronin.cardtasker.features.onboarding.di.OnboardingComponent
 import ru.boronin.cardtasker.features.tasks.di.TasksComponent
 
 /**
@@ -28,6 +29,7 @@ interface ActivityComponent {
     fun detailsFactory(): DetailsComponent.Factory
     fun homeFactory(): HomeComponent.Factory
     fun tasksFactory(): TasksComponent.Factory
+    fun onboardingFactory(): OnboardingComponent.Factory
 
     fun inject(activity: MainActivity)
 }
