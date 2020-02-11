@@ -26,7 +26,11 @@ abstract class BaseActivity : AppCompatActivity(), BackPressDelegate by BackPres
     }
 
     override fun onBackPressed() {
-        backPressed { super.onBackPressed() }
+        backPressed({
+            super.onBackPressed()
+        }, {
+            moveTaskToBack(false)
+        })
     }
 
     abstract fun initDagger(appComponent: AppComponent)

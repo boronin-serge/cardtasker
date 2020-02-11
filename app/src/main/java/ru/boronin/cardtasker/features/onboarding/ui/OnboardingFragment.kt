@@ -40,8 +40,6 @@ class OnboardingFragment : BaseView<OnboardingView, OnboardingPresenter, Onboard
         component?.inject(this)
     }
 
-    override fun back() = false
-
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnNext -> {

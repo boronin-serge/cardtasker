@@ -40,8 +40,6 @@ class HomeFragment : BaseView<HomeView, HomePresenter, HomeComponent>(), HomeVie
 
     }
 
-    override fun back() = false
-
     // region private
 
     private fun initToolbar() {
