@@ -68,7 +68,10 @@ class HomeFragment : BaseView<HomeView, HomePresenter, HomeComponent>(), HomeVie
 
     private fun initViewPager() {
         val adapter = ViewPagerFragmentAdapter(requireActivity())
-        viewPager2?.adapter = adapter
+        viewPager2?.apply {
+            this.adapter = adapter
+            isUserInputEnabled = false
+        }
         adapter.update(
             listOf(
                 TasksFragment(),

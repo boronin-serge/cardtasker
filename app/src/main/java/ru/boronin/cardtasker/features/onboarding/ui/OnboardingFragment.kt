@@ -40,6 +40,8 @@ class OnboardingFragment : BaseView<OnboardingView, OnboardingPresenter, Onboard
         component?.inject(this)
     }
 
+    override fun back() = false
+
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.btnNext -> {
@@ -65,7 +67,10 @@ class OnboardingFragment : BaseView<OnboardingView, OnboardingPresenter, Onboard
 
     private fun initViewPager() {
         val adapter = OnboardingAdapter()
-        viewPager2?.adapter = adapter
+        viewPager2?.apply {
+            this.adapter = adapter
+            isUserInputEnabled = false
+        }
         adapter.update(pages)
     }
 
