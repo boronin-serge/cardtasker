@@ -7,6 +7,7 @@ import ru.boronin.cardtasker.common.presentation.mvp.MvpView
  */
 interface DetailsView : MvpView {
     fun openSmth()
+    fun updateList(items: List<String>)
 }
 
 interface DetailsAction {

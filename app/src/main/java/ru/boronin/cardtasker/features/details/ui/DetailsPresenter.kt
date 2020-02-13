@@ -12,6 +12,10 @@ class DetailsPresenter @Inject constructor(
     private val navigator: DetailsNavigator
 ) : BasePresenter<DetailsView>(), DetailsAction {
 
+    override fun onFirstViewAttach() {
+        view?.updateList(listOf("KJVDV","FDVFV","SRUHFKSDU","DFJVNKDJF","KJVDV","FDVFV","SRUHFKSDU","DFJVNKDJF","KJVDV","FDVFV","SRUHFKSDU","DFJVNKDJF","SRUHFKSDU","DFJVNKDJF","KJVDV","FDVFV","SRUHFKSDU","DFJVNKDJF"))
+    }
+
     override fun backAction() {
         navigator.back()
     }

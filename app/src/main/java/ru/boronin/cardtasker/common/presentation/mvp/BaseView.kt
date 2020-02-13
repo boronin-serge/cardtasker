@@ -22,9 +22,9 @@ abstract class BaseView<V : MvpView, P : MvpPresenter<V>, C> : MvpDelegateCallba
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.attachView(this.view)
-
         onViewBound(view)
+
+        presenter.attachView(this.view)
     }
 
     override fun onDestroyView() {

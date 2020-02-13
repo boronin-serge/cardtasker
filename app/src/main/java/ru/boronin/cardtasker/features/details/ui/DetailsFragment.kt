@@ -1,22 +1,19 @@
 package ru.boronin.cardtasker.features.details.ui
 
-import android.app.Activity
 import android.view.View
-import androidx.core.os.bundleOf
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.details_fragment.*
 import ru.boronin.cardtasker.R
-import ru.boronin.cardtasker.common.presentation.DATA_KEY
+import ru.boronin.cardtasker.common.presentation.BaseAdapter
 import ru.boronin.cardtasker.common.presentation.mvp.BaseView
 import ru.boronin.cardtasker.features.details.di.DetailsComponent
 import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
-import ru.boronin.common.extension.core.intentOf
 import javax.inject.Inject
 
 /**
  * Created by Sergey Boronin on 14.01.2020.
  */
-class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent>(), DetailsView,
-    View.OnClickListener {
+class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent>(), DetailsView {
 
     @Inject
     override lateinit var presenter: DetailsPresenter
@@ -25,6 +22,7 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent
 
     override fun onViewBound(view: View) {
         initToolbar()
+        initList()
         initListeners()
     }
 
@@ -39,13 +37,8 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent
 
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id) {
-            R.id.button -> {
-                setResult(Activity.RESULT_OK, intentOf(DATA_KEY to "info"))
-                presenter.backAction()
-            }
-        }
+    override fun updateList(items: List<String>) {
+        (rvList?.adapter as DetailsAdapter).update(items)
     }
 
     // region private
@@ -54,8 +47,13 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent
         setVisibleToolbar(false)
     }
 
+    private fun initList() {
+        rvList?.layoutManager = LinearLayoutManager(activity)
+        rvList?.adapter = DetailsAdapter()
+    }
+
     private fun initListeners() {
-        button?.setOnClickListener(this)
+
     }
 
     // endregion
