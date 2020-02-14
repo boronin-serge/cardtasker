@@ -1,2 +1,2 @@
-include ':app', ':core-api', ':common-utils', ':common-navigation', ':common-extension', ':core-android', ':common-plugins'
+include ':app', ':core-api', ':common-utils', ':common-navigation', ':common-extension', ':core-android', ':common-plugins', ':common-view'
 rootProject.name='CardTasker'
