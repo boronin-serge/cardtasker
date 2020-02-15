@@ -31,7 +31,7 @@ class CustomRecyclerView @JvmOverloads constructor(
     private lateinit var offscreenCanvas: Canvas
 
     init {
-        context.withStyledAttributes(attrs, R.styleable.CustomViewPager) {
+        context.withStyledAttributes(attrs, R.styleable.CustomRecyclerView) {
             cornerTopLeftRadius = getDimensionPixelSize(R.styleable.CustomRecyclerView_topLeftCornerRadius, DEFAULT_INT).toFloat()
             cornerTopRightRadius = getDimensionPixelSize(R.styleable.CustomRecyclerView_topRightCornerRadius, DEFAULT_INT).toFloat()
             cornerBottomLeftRadius = getDimensionPixelSize(R.styleable.CustomRecyclerView_bottomLeftCornerRadius, DEFAULT_INT).toFloat()
@@ -62,6 +62,7 @@ class CustomRecyclerView @JvmOverloads constructor(
         val paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.color = Color.WHITE
         canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), paint)
+
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
 
         val corners = floatArrayOf(
@@ -72,7 +73,8 @@ class CustomRecyclerView @JvmOverloads constructor(
         )
 
         val path = Path()
-        path.addRoundRect(RectF(0f, 0f, width.toFloat(), height.toFloat()), corners, Path.Direction.CW)
+        val rect = RectF(0f, 0f, width.toFloat(), height.toFloat())
+        path.addRoundRect(rect, corners, Path.Direction.CW)
 
         canvas.drawPath(path, paint)
         return mask
