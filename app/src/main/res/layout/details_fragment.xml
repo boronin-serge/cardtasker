@@ -6,11 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
-    <ru.boronin.common.view.CustomRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:topLeftCornerRadius="10dp"
-        app:topRightCornerRadius="10dp"/>
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

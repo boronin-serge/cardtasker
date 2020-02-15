@@ -1,5 +1,6 @@
 package ru.boronin.cardtasker.features.details.ui
 
+import android.view.Gravity
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.details_fragment.*
@@ -8,6 +9,7 @@ import ru.boronin.cardtasker.common.presentation.BaseAdapter
 import ru.boronin.cardtasker.common.presentation.mvp.BaseView
 import ru.boronin.cardtasker.features.details.di.DetailsComponent
 import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
+import ru.boronin.common.extension.widget.generateBackgroundWithShadow
 import javax.inject.Inject
 
 /**
@@ -50,6 +52,13 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent
     private fun initList() {
         rvList?.layoutManager = LinearLayoutManager(activity)
         rvList?.adapter = DetailsAdapter()
+        rvList?.generateBackgroundWithShadow(
+            android.R.color.white,
+            R.dimen.cornerRadius,
+            android.R.color.darker_gray,
+            R.dimen.elevation,
+            Gravity.CENTER
+        )
     }
 
     private fun initListeners() {
