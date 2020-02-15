@@ -4,10 +4,17 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Rect
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.RoundRectShape
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
+import android.view.View.LAYER_TYPE_SOFTWARE
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.TextView
@@ -152,4 +159,64 @@ fun View.getColorStateList(@ColorRes res: Int) = ContextCompat.getColorStateList
 fun View.startAnimation(@AnimRes anim: Int) {
   val animation = AnimationUtils.loadAnimation(context, anim)
   startAnimation(animation)
+}
+
+fun View.generateBackgroundWithShadow(
+  @ColorRes backgroundColor: Int,
+  @DimenRes cornerRadius: Int,
+  @ColorRes shadowColor: Int,
+  @DimenRes elevation: Int,
+  shadowGravity: Int
+) {
+  val cornerRadiusValue = getDimensionPixelSize(cornerRadius).toFloat()
+  val elevationValue = getDimensionPixelSize(elevation)
+
+  val shapeDrawablePadding = Rect()
+  shapeDrawablePadding.left = elevationValue
+  shapeDrawablePadding.right = elevationValue
+
+  val dy: Float
+  when (shadowGravity) {
+    Gravity.TOP -> {
+      shapeDrawablePadding.top = elevationValue * 2
+      shapeDrawablePadding.bottom = elevationValue
+      dy = -1 * elevationValue / 3f
+    }
+    Gravity.CENTER -> {
+      shapeDrawablePadding.top = elevationValue
+      shapeDrawablePadding.bottom = elevationValue
+      dy = 0f
+    }
+    else -> {
+      dy = 0f
+    }
+  }
+
+  val outerRadius = floatArrayOf(
+    cornerRadiusValue,
+    cornerRadiusValue,
+    cornerRadiusValue,
+    cornerRadiusValue,
+    cornerRadiusValue,
+    cornerRadiusValue,
+    cornerRadiusValue,
+    cornerRadiusValue
+  )
+
+  val shapeDrawable = ShapeDrawable()
+  shapeDrawable.setPadding(shapeDrawablePadding)
+  shapeDrawable.paint.color = getColor(backgroundColor)
+  shapeDrawable.paint.setShadowLayer(elevationValue.toFloat(), 0f, dy, getColor(shadowColor))
+  shapeDrawable.shape = RoundRectShape(outerRadius, null, null)
+
+  setLayerType(LAYER_TYPE_SOFTWARE, null)
+
+  val drawable = LayerDrawable(arrayOf<Drawable>(shapeDrawable))
+  drawable.setLayerInset(
+    0,
+      elevationValue, elevationValue * 2,
+    elevationValue,elevationValue * 2
+  ) // это paddings для сужения нашего View внутрь выделенного прямогульника.
+
+  background = drawable
 }
