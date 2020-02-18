@@ -26,6 +26,7 @@ dependencies {
   implementation dependencies.recyclerView
   implementation dependencies.rxPermissions
   implementation dependencies.swipeRefreshLayout
+  implementation dependencies.viewpager2
 
   // develop
   implementation developmentDependencies.kotlinStdlibJdk7

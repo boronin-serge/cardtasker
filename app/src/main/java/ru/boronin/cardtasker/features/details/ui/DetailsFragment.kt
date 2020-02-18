@@ -1,15 +1,14 @@
 package ru.boronin.cardtasker.features.details.ui
 
-import android.view.Gravity
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.CompositePageTransformer
 import kotlinx.android.synthetic.main.details_fragment.*
 import ru.boronin.cardtasker.R
-import ru.boronin.cardtasker.common.presentation.BaseAdapter
 import ru.boronin.cardtasker.common.presentation.mvp.BaseView
 import ru.boronin.cardtasker.features.details.di.DetailsComponent
 import ru.boronin.cardtasker.features.main.di.activity.ActivityComponent
-import ru.boronin.common.extension.widget.generateBackgroundWithShadow
+import ru.boronin.common.view.viewpager2.transformer.OffsetPageTransformer
+import ru.boronin.common.view.viewpager2.transformer.RotatePageTransformer
 import javax.inject.Inject
 
 /**
@@ -40,7 +39,7 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent
     }
 
     override fun updateList(items: List<String>) {
-        (rvList?.adapter as DetailsAdapter).update(items)
+        (vpList?.adapter as DetailsAdapter).update(items)
     }
 
     // region private
@@ -50,9 +49,20 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent
     }
 
     private fun initList() {
-        rvList?.layoutManager = LinearLayoutManager(activity)
-        rvList?.adapter = DetailsAdapter()
+        with(vpList) {
+            adapter = DetailsAdapter()
+            clipToPadding = false
+            clipChildren = false
+            offscreenPageLimit = 2
 
+            val margin = -50
+            val offset = 0
+
+            setPageTransformer(CompositePageTransformer().also {
+                it.addTransformer(OffsetPageTransformer(offset, margin))
+                it.addTransformer(RotatePageTransformer())
+            })
+        }
     }
 
     private fun initListeners() {

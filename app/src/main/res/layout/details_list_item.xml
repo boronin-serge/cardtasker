@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ru.boronin.common.view.base.RoundedFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:background="@android:color/holo_orange_light">
+    app:rfl_backgroundColor="@color/colorAccent"
+    app:cornerRadius="20dp"
+    android:elevation="20dp"
+    android:outlineAmbientShadowColor="@color/colorAccent"
+    android:outlineSpotShadowColor="@color/colorAccent"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
     <TextView
         android:id="@+id/tvDesc"
@@ -15,10 +19,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ru.boronin.common.view.base.RoundedFrameLayout>

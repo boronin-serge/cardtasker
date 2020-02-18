@@ -10,7 +10,7 @@ class ViewPagerFragmentAdapter(
 
     private val items: MutableList<Fragment> = mutableListOf()
 
-    override fun getItem(position: Int) = items[position]
+    override fun createFragment(position: Int) = items[position]
 
     override fun getItemCount() = items.size
 

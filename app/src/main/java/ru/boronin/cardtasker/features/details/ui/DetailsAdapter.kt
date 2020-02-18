@@ -25,16 +25,6 @@ class DetailsAdapter : BaseAdapter<DetailsAdapter.PagerVH, String>() {
     class PagerVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val desc = itemView.tvDesc
 
-        init {
-//            itemView.generateBackgroundWithShadow(
-//                android.R.color.white,
-//                R.dimen.cornerRadius,
-//                android.R.color.darker_gray,
-//                R.dimen.elevation,
-//                Gravity.CENTER
-//            )
-        }
-
         fun bind(model: String) {
             desc.text = model
         }
