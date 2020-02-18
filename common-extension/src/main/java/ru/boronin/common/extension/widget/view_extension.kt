@@ -11,6 +11,7 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.RoundRectShape
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
@@ -168,6 +169,7 @@ fun View.generateBackgroundWithShadow(
   @DimenRes elevation: Int,
   shadowGravity: Int
 ) {
+  Log.d("shadow", "test")
   val cornerRadiusValue = getDimensionPixelSize(cornerRadius).toFloat()
   val elevationValue = getDimensionPixelSize(elevation)
 

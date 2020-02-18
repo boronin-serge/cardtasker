@@ -26,13 +26,13 @@ class DetailsAdapter : BaseAdapter<DetailsAdapter.PagerVH, String>() {
         private val desc = itemView.tvDesc
 
         init {
-            itemView.generateBackgroundWithShadow(
-                android.R.color.white,
-                R.dimen.cornerRadius,
-                android.R.color.darker_gray,
-                R.dimen.elevation,
-                Gravity.CENTER
-            )
+//            itemView.generateBackgroundWithShadow(
+//                android.R.color.white,
+//                R.dimen.cornerRadius,
+//                android.R.color.darker_gray,
+//                R.dimen.elevation,
+//                Gravity.CENTER
+//            )
         }
 
         fun bind(model: String) {

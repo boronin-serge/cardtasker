@@ -52,13 +52,7 @@ class DetailsFragment : BaseView<DetailsView, DetailsPresenter, DetailsComponent
     private fun initList() {
         rvList?.layoutManager = LinearLayoutManager(activity)
         rvList?.adapter = DetailsAdapter()
-        rvList?.generateBackgroundWithShadow(
-            android.R.color.white,
-            R.dimen.cornerRadius,
-            android.R.color.darker_gray,
-            R.dimen.elevation,
-            Gravity.CENTER
-        )
+
     }
 
     private fun initListeners() {

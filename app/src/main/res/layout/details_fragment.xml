@@ -4,11 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorAccent">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ru.boronin.common.view.CustomRecyclerView
         android:id="@+id/rvList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        app:topLeftCornerRadius="20dp"
+        app:topRightCornerRadius="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

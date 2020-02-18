@@ -3,6 +3,7 @@ package ru.boronin.common.view
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import androidx.core.content.withStyledAttributes
 import androidx.recyclerview.widget.RecyclerView
 import ru.boronin.common.utils.DEFAULT_INT
@@ -54,6 +55,7 @@ class CustomRecyclerView @JvmOverloads constructor(
         }
         offscreenCanvas.drawBitmap(maskBitmap, 0f, 0f, maskPaint)
         canvas.drawBitmap(offscreenBitmap, 0f, 0f, paint)
+        Log.d("dfv", "draw")
     }
 
     private fun createMask(width: Int, height: Int): Bitmap {
