@@ -23,7 +23,7 @@ class OnboardingFragment : BaseView<OnboardingView, OnboardingPresenter, Onboard
     override lateinit var presenter: OnboardingPresenter
 
     private val pages = listOf(
-        OnboardingModel(R.drawable.ic_spellcheck_black_24dp, R.string.onboarding_firstPage, Color.YELLOW),
+        OnboardingModel(R.drawable.ic_spellcheck_black_24dp, R.string.onboarding_firstPage, Color.WHITE),
         OnboardingModel(R.drawable.ic_tag_faces_black_24dp, R.string.onboarding_secondPage, Color.RED)
     )
     
